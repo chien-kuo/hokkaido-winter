@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>北海道六日遊</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background-color: #f5f5f5;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    .app-container {
+      max-width: 480px;
+      margin: 0 auto;
+      background-color: white;
+      min-height: 100vh;
+    }
+    
+    .header {
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      color: white;
+      padding: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .header h1 {
+      font-size: 20px;
+      text-align: center;
+      font-weight: bold;
+    }
+    
+    .header p {
+      text-align: center;
+      font-size: 13px;
+      margin-top: 4px;
+      opacity: 0.9;
+    }
+    
+    .day-nav {
+      display: flex;
+      overflow-x: auto;
+      background: white;
+      border-bottom: 1px solid #e5e7eb;
+      position: sticky;
+      top: 72px;
+      z-index: 90;
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    .day-nav::-webkit-scrollbar {
+      display: none;
+    }
+    
+    .day-btn {
+      flex: 1;
+      min-width: 60px;
+      padding: 12px;
+      border: none;
+      background: #f9fafb;
+      color: #6b7280;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    .day-btn.active {
+      background: #3b82f6;
+      color: white;
+    }
+    
+    .tab-nav {
+      display: flex;
+      background: white;
+      border-bottom: 1px solid #e5e7eb;
+      position: sticky;
+      top: 124px;
+      z-index: 90;
+    }
+    
+    .tab-btn {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      background: white;
+      color: #6b7280;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    .tab-btn.active {
+      color: #3b82f6;
+      border-bottom-color: #3b82f6;
+    }
+    
+    .content {
+      padding: 16px;
+      padding-bottom: 80px;
+    }
+    
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+    
+    .activity-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      border: 1px solid #e5e7eb;
+      margin-bottom: 12px;
+      padding: 16px;
+    }
+    
+    .activity-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+    
+    .activity-info {
+      flex: 1;
+    }
+    
+    .activity-meta {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+      gap: 8px;
+    }
+    
+    .time-badge {
+      background: #dbeafe;
+      color: #2563eb;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+    
+    .duration {
+      font-size: 12px;
+      color: #6b7280;
+    }
+    
+    .activity-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #1f2937;
+      margin-bottom: 4px;
+    }
+    
+    .activity-location {
+      font-size: 14px;
+      color: #6b7280;
+    }
+    
+    .activity-number {
+      width: 40px;
+      height: 40px;
+      background: #eff6ff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #3b82f6;
+      font-weight: bold;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    
+    .map-placeholder {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+    
+    .map-button {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      background: #3b82f6;
+      color: white;
+      text-align: center;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    
+    .map-button:active {
+      background: #2563eb;
+    }
+    
+    .map-info {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 16px;
+      font-size: 13px;
+      color: #1e40af;
+    }
+    
+    .map-icon {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+    
+    .map-text {
+      text-align: center;
+      color: #6b7280;
+      font-size: 14px;
+    }
+    
+    .map-locations {
+      margin-top: 16px;
+      width: 100%;
+      max-width: 300px;
+    }
+    
+    .map-location-item {
+      display: flex;
+      align-items: center;
+      background: white;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      font-size: 12px;
+      transition: all 0.2s;
+      border: 1px solid #e5e7eb;
+    }
+    
+    .map-location-item:active {
+      background: #f3f4f6;
+      transform: scale(0.98);
+    }
+    
+    .map-marker {
+      width: 24px;
+      height: 24px;
+      background: #3b82f6;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 8px;
+      flex-shrink: 0;
+      font-size: 11px;
+      font-weight: bold;
+    }
+    
+    .weather-card {
+      background: linear-gradient(135deg, #60a5fa, #3b82f6);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(59,130,246,0.3);
+      padding: 32px;
+      color: white;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    
+    .weather-icon {
+      font-size: 64px;
+      margin-bottom: 12px;
+    }
+    
+    .weather-temp {
+      font-size: 48px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    
+    .weather-condition {
+      font-size: 18px;
+      opacity: 0.9;
+    }
+    
+    .weather-date {
+      font-size: 13px;
+      opacity: 0.75;
+      margin-top: 8px;
+    }
+    
+    .info-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    
+    .info-card h3 {
+      font-size: 16px;
+      font-weight: bold;
+      color: #1f2937;
+      margin-bottom: 12px;
+    }
+    
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: #6b7280;
+    }
+    
+    .info-icon {
+      margin-right: 8px;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+    
+    .forecast-list {
+      margin-top: 12px;
+    }
+    
+    .forecast-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px;
+      border-radius: 8px;
+      margin-bottom: 4px;
+    }
+    
+    .forecast-item.current {
+      background: #eff6ff;
+    }
+    
+    .forecast-day {
+      font-size: 12px;
+      color: #6b7280;
+      width: 50px;
+    }
+    
+    .forecast-icon {
+      font-size: 20px;
+      width: 30px;
+      text-align: center;
+    }
+    
+    .forecast-temp {
+      font-size: 14px;
+      font-weight: 500;
+      width: 50px;
+      text-align: right;
+    }
+    
+    .forecast-cond {
+      font-size: 12px;
+      color: #6b7280;
+      width: 50px;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <div class="header">
+      <h1>北海道六日遊</h1>
+      <p id="headerDate"></p>
+    </div>
+
+    <div class="day-nav" id="dayNav"></div>
+
+    <div class="tab-nav">
+      <button class="tab-btn active" data-tab="schedule">📅 行程</button>
+      <button class="tab-btn" data-tab="map">🗺️ 地圖</button>
+      <button class="tab-btn" data-tab="weather">🌤️ 天氣</button>
+    </div>
+
+    <div class="content">
+      <div id="scheduleContent" class="tab-content active"></div>
+      <div id="mapContent" class="tab-content"></div>
+      <div id="weatherContent" class="tab-content"></div>
+    </div>
+  </div>
+
+  <script>
+    const tripData = {
+      title: "北海道六日遊",
+      tourCode: "SPK06TR260131TW",
+      guide: {
+        name: "張智為先生",
+        phoneTW: "0905-707076",
+        phoneJP: "090-6674-2211"
+      },
+      days: [
+        {
+          day: 1,
+          date: "2026-01-31",
+          dayOfWeek: "六",
+          weather: { temp: "-5°C", condition: "多雲", icon: "☁️" },
+          hotel: "定山溪萬世閣 (Jozankei Manseikaku Hotel Milione)",
+          hotelPhone: "C:81-11 / T:598-3500 / F:595-2131",
+          activities: [
+            { time: "09:30", title: "桃園機場集合", location: "桃園機場第一航站 館航1號團體櫃台", duration: "30min" },
+            { time: "12:30", title: "搭機前往北海道", location: "酷航 TR892 台北→新千歲", duration: "4.5hr" },
+            { time: "17:20", title: "抵達新千歲機場", location: "新千歲機場", duration: "30min" },
+            { time: "18:30", title: "前往定山溪溫泉", location: "定山溪溫泉區", duration: "1.5hr" },
+            { time: "20:00", title: "飯店入住及晚餐", location: "定山溪萬世閣", duration: "2hr" }
+          ]
+        },
+        {
+          day: 2,
+          date: "2026-02-01",
+          dayOfWeek: "日",
+          weather: { temp: "-8°C", condition: "雪", icon: "❄️" },
+          hotel: "層雲峽 朝陽 RESORT (CHOYO RESORT HOTEL)",
+          hotelPhone: "C:81-1658 / T:5-3911 / F:5-3922",
+          activities: [
+            { time: "08:00", title: "前往旭山動物園", location: "旭川", duration: "2.5hr" },
+            { time: "10:30", title: "旭山動物園", location: "旭川市旭山動物園", duration: "3hr" },
+            { time: "13:30", title: "旭川拉麵村", location: "旭川拉麵村", duration: "1.5hr" },
+            { time: "15:00", title: "旭川常盤施轉塔", location: "日劇初戀拍攝地點", duration: "1hr" },
+            { time: "16:30", title: "流星、銀河冰瀑", location: "層雲峽", duration: "1hr" },
+            { time: "18:00", title: "層雲峽冰瀑慶典", location: "第51回層雲峽冰瀑慶典", duration: "2hr" }
+          ]
+        },
+        {
+          day: 3,
+          date: "2026-02-02",
+          dayOfWeek: "一",
+          weather: { temp: "-10°C", condition: "雪", icon: "❄️" },
+          hotel: "網走湖莊 HOTEL",
+          hotelPhone: "C:81-152 / T:48-2311 / F:48-2828",
+          activities: [
+            { time: "08:00", title: "流冰觀光破冰船", location: "鄂霍次克海", duration: "2hr" },
+            { time: "10:30", title: "天都山流冰館", location: "天都山", duration: "1.5hr" },
+            { time: "12:00", title: "天都山展望台", location: "跳望網走市區", duration: "1hr" },
+            { time: "14:00", title: "硫磺山", location: "硫磺山溫泉煮蛋", duration: "1.5hr" },
+            { time: "16:00", title: "前往網走", location: "網走湖莊", duration: "1hr" },
+            { time: "18:00", title: "飯店晚餐", location: "網走湖莊 HOTEL", duration: "2hr" }
+          ]
+        },
+        {
+          day: 4,
+          date: "2026-02-03",
+          dayOfWeek: "二",
+          weather: { temp: "-7°C", condition: "晴", icon: "☀️" },
+          hotel: "十勝川觀月苑",
+          hotelPhone: "C:81-155 / T:46-2001 / F:46-2333",
+          activities: [
+            { time: "08:00", title: "釧路濕原國立公園", location: "釧路濕原瞭望台", duration: "2hr" },
+            { time: "10:30", title: "丹頂鶴自然公園", location: "西伯利亞丹頂鶴飛來地", duration: "1.5hr" },
+            { time: "12:30", title: "午餐", location: "釧路市區", duration: "1hr" },
+            { time: "14:00", title: "十勝幸福車站", location: "十勝川溫泉區", duration: "1.5hr" },
+            { time: "16:00", title: "十勝川白鳥祭", location: "彩凜華 SAIRINKA (1/24~2/15)", duration: "2hr" },
+            { time: "18:30", title: "飯店入住", location: "十勝川觀月苑", duration: "1.5hr" }
+          ]
+        },
+        {
+          day: 5,
+          date: "2026-02-04",
+          dayOfWeek: "三",
+          weather: { temp: "-6°C", condition: "晴", icon: "☀️" },
+          hotel: "Hotel JAL City札幌中島公園 (附設大浴場)",
+          hotelPhone: "C:81-11 / T:521-2580 / F:521-2581",
+          activities: [
+            { time: "09:00", title: "免稅店", location: "札幌市區", duration: "1hr" },
+            { time: "10:30", title: "白色戀人歐風庭院", location: "白色戀人公園", duration: "1.5hr" },
+            { time: "12:30", title: "北海道神宮", location: "北海道總鎮守", duration: "1hr" },
+            { time: "14:00", title: "札幌雪祭", location: "第76回札幌雪祭 (2/4~2/11)", duration: "3hr" },
+            { time: "17:30", title: "自由夜訪狸小路", location: "狸小路商店街", duration: "2.5hr" },
+            { time: "20:00", title: "飯店入住", location: "JAL City中島公園", duration: "-" }
+          ]
+        },
+        {
+          day: 6,
+          date: "2026-02-05",
+          dayOfWeek: "四",
+          weather: { temp: "-4°C", condition: "多雲", icon: "☁️" },
+          hotel: "溫暖的家",
+          hotelPhone: "",
+          activities: [
+            { time: "09:00", title: "北方雪上樂園", location: "SNOW PARK 6合一戲雪", duration: "2hr" },
+            { time: "11:30", title: "三井OUTLET", location: "三井OUTLET購物中心", duration: "2.5hr" },
+            { time: "14:30", title: "前往新千歲機場", location: "新千歲機場", duration: "1hr" },
+            { time: "16:00", title: "機場報到", location: "新千歲機場", duration: "2hr" },
+            { time: "18:40", title: "搭機返台", location: "酷航 TR893 新千歲→台北", duration: "4hr" },
+            { time: "22:20", title: "抵達桃園機場", location: "桃園機場", duration: "-" }
+          ]
+        }
+      ]
+    };
+
+    let currentDay = 1;
+    let activeTab = 'schedule';
+
+    function init() {
+      renderDayNav();
+      renderContent();
+      attachEventListeners();
+    }
+
+    function renderDayNav() {
+      const dayNav = document.getElementById('dayNav');
+      dayNav.innerHTML = tripData.days.map(day => 
+        `<button class="day-btn ${day.day === currentDay ? 'active' : ''}" data-day="${day.day}">Day ${day.day}</button>`
+      ).join('');
+    }
+
+    function renderContent() {
+      updateHeader();
+      renderSchedule();
+      renderMap();
+      renderWeather();
+    }
+
+    function updateHeader() {
+      const currentDayData = tripData.days.find(d => d.day === currentDay);
+      const dateStr = `${currentDayData.date} (${currentDayData.dayOfWeek})`;
+      document.getElementById('headerDate').textContent = `${dateStr} · 第 ${currentDay} 天`;
+    }
+
+    function renderSchedule() {
+      const currentDayData = tripData.days.find(d => d.day === currentDay);
+      const content = document.getElementById('scheduleContent');
+      
+      content.innerHTML = `
+        ${currentDayData.activities.map((activity, idx) => `
+          <div class="activity-card">
+            <div class="activity-header">
+              <div class="activity-info">
+                <div class="activity-meta">
+                  <span class="time-badge">${activity.time}</span>
+                  <span class="duration">⏱️ ${activity.duration}</span>
+                </div>
+                <h3 class="activity-title">${activity.title}</h3>
+                <p class="activity-location">📍 ${activity.location}</p>
+              </div>
+              <div class="activity-number">${idx + 1}</div>
+            </div>
+          </div>
+        `).join('')}
+        
+        ${currentDayData.hotel ? `
+          <div class="info-card" style="margin-top: 20px;">
+            <h3>🏨 今日住宿</h3>
+            <div style="margin-top: 8px;">
+              <p style="font-size: 15px; font-weight: 500; color: #1f2937; margin-bottom: 4px;">${currentDayData.hotel}</p>
+              ${currentDayData.hotelPhone ? `<p style="font-size: 13px; color: #6b7280;">📞 ${currentDayData.hotelPhone}</p>` : ''}
+            </div>
+          </div>
+        ` : ''}
+      `;
+    }
+
+    function renderMap() {
+      const currentDayData = tripData.days.find(d => d.day === currentDay);
+      const content = document.getElementById('mapContent');
+      
+      // 建立 Google Maps 搜尋 URL（包含所有地點）
+      const locations = currentDayData.activities.map(activity => activity.location).join(' / ');
+      const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(locations)}`;
+      
+      content.innerHTML = `
+        <div class="map-placeholder">
+          <div style="padding: 16px;">
+            <div class="map-info">
+              ℹ️ 點擊下方地點可在 Google Maps 查看位置
+            </div>
+            
+            <a href="${mapUrl}" target="_blank" class="map-button">
+              🗺️ 在 Google Maps 查看今日所有地點
+            </a>
+            
+            <div class="map-locations">
+              ${currentDayData.activities.map((activity, idx) => {
+                const singleMapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(activity.location)}`;
+                return `
+                  <a href="${singleMapUrl}" target="_blank" class="map-location-item" style="text-decoration: none; color: inherit;">
+                    <div class="map-marker">${idx + 1}</div>
+                    <div style="flex: 1;">
+                      <div style="font-size: 14px; color: #1f2937;">${activity.location}</div>
+                      <div style="font-size: 12px; color: #6b7280; margin-top: 2px;">${activity.time} · ${activity.title}</div>
+                    </div>
+                    <div style="color: #3b82f6; font-size: 18px;">›</div>
+                  </a>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderWeather() {
+      const currentDayData = tripData.days.find(d => d.day === currentDay);
+      const content = document.getElementById('weatherContent');
+      
+      content.innerHTML = `
+        <div class="weather-card">
+          <div class="weather-icon">${currentDayData.weather.icon}</div>
+          <div class="weather-temp">${currentDayData.weather.temp}</div>
+          <div class="weather-condition">${currentDayData.weather.condition}</div>
+          <div class="weather-date">${currentDayData.date} (${currentDayData.dayOfWeek})</div>
+        </div>
+
+        <div class="info-card">
+          <h3>📋 團體資訊</h3>
+          <div class="info-item">
+            <span class="info-icon">🎫</span>
+            <span>團號：${tripData.tourCode}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">👤</span>
+            <span>導遊：${tripData.guide.name}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">📱</span>
+            <span>台灣手機：${tripData.guide.phoneTW}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">📱</span>
+            <span>日本手機：${tripData.guide.phoneJP}</span>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h3>天氣提示</h3>
+          <div class="info-item">
+            <span class="info-icon">❄️</span>
+            <span>北海道冬季氣溫低，請穿著保暖衣物</span>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">🧤</span>
+            <span>建議攜帶手套、圍巾、毛帽</span>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">👟</span>
+            <span>穿著防滑鞋，小心路面結冰</span>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h3>未來天氣預報</h3>
+          <div class="forecast-list">
+            ${tripData.days.map(day => `
+              <div class="forecast-item ${day.day === currentDay ? 'current' : ''}">
+                <span class="forecast-day">Day ${day.day}</span>
+                <span class="forecast-icon">${day.weather.icon}</span>
+                <span class="forecast-temp">${day.weather.temp}</span>
+                <span class="forecast-cond">${day.weather.condition}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function attachEventListeners() {
+      // Day navigation
+      document.getElementById('dayNav').addEventListener('click', (e) => {
+        if (e.target.classList.contains('day-btn')) {
+          currentDay = parseInt(e.target.dataset.day);
+          document.querySelectorAll('.day-btn').forEach(btn => btn.classList.remove('active'));
+          e.target.classList.add('active');
+          renderContent();
+        }
+      });
+
+      // Tab navigation
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          activeTab = e.target.dataset.tab;
+          
+          document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+          e.target.classList.add('active');
+          
+          document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+          document.getElementById(activeTab + 'Content').classList.add('active');
+        });
+      });
+    }
+
+    // Initialize app
+    init();
+  </script>
+</body>
+</html>
