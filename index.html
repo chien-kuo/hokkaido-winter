@@ -14,7 +14,7 @@
     
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-      background-color: #f5f5f5;
+      background-color: #f0f9ff;
       -webkit-font-smoothing: antialiased;
     }
     
@@ -26,8 +26,8 @@
     }
     
     .header {
-      background: linear-gradient(135deg, #3b82f6, #2563eb);
-      color: white;
+      background: linear-gradient(135deg, #e0f2fe, #bae6fd, #7dd3fc);
+      color: #0c4a6e;
       padding: 16px;
       position: sticky;
       top: 0;
@@ -39,13 +39,15 @@
       font-size: 20px;
       text-align: center;
       font-weight: bold;
+      color: #0c4a6e;
     }
     
     .header p {
       text-align: center;
       font-size: 13px;
       margin-top: 4px;
-      opacity: 0.9;
+      color: #0369a1;
+      opacity: 1;
     }
     
     .day-nav {
@@ -68,8 +70,8 @@
       min-width: 60px;
       padding: 12px;
       border: none;
-      background: #f9fafb;
-      color: #6b7280;
+      background: #f0f9ff;
+      color: #0369a1;
       font-size: 14px;
       font-weight: 500;
       cursor: pointer;
@@ -78,7 +80,7 @@
     }
     
     .day-btn.active {
-      background: #3b82f6;
+      background: linear-gradient(135deg, #0ea5e9, #06b6d4);
       color: white;
     }
     
@@ -96,7 +98,7 @@
       padding: 12px;
       border: none;
       background: white;
-      color: #6b7280;
+      color: #0369a1;
       font-size: 14px;
       font-weight: 500;
       cursor: pointer;
@@ -106,8 +108,9 @@
     }
     
     .tab-btn.active {
-      color: #3b82f6;
-      border-bottom-color: #3b82f6;
+      color: #0284c7;
+      border-bottom-color: #06b6d4;
+      background: #f0f9ff;
     }
     
     .content {
@@ -124,10 +127,10 @@
     }
     
     .activity-card {
-      background: white;
+      background: linear-gradient(135deg, #ffffff, #f0f9ff);
       border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      border: 1px solid #e5e7eb;
+      box-shadow: 0 2px 8px rgba(14, 165, 233, 0.15);
+      border: 1px solid #e0f2fe;
       margin-bottom: 12px;
       padding: 16px;
     }
@@ -150,8 +153,8 @@
     }
     
     .time-badge {
-      background: #dbeafe;
-      color: #2563eb;
+      background: #e0f2fe;
+      color: #0369a1;
       font-size: 12px;
       font-weight: 600;
       padding: 4px 8px;
@@ -178,12 +181,12 @@
     .activity-number {
       width: 40px;
       height: 40px;
-      background: #eff6ff;
+      background: linear-gradient(135deg, #e0f2fe, #bae6fd);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #3b82f6;
+      color: #0369a1;
       font-weight: bold;
       font-size: 16px;
       flex-shrink: 0;
@@ -200,7 +203,7 @@
       display: block;
       width: 100%;
       padding: 16px;
-      background: #3b82f6;
+      background: linear-gradient(135deg, #0ea5e9, #06b6d4);
       color: white;
       text-align: center;
       font-size: 15px;
@@ -209,20 +212,21 @@
       margin-bottom: 12px;
       text-decoration: none;
       transition: background 0.2s;
+      box-shadow: 0 2px 8px rgba(14, 165, 233, 0.3);
     }
     
     .map-button:active {
-      background: #2563eb;
+      background: linear-gradient(135deg, #0284c7, #0891b2);
     }
     
     .map-info {
-      background: #eff6ff;
-      border: 1px solid #bfdbfe;
+      background: #e0f2fe;
+      border: 1px solid #bae6fd;
       border-radius: 8px;
       padding: 12px;
       margin-bottom: 16px;
       font-size: 13px;
-      color: #1e40af;
+      color: #0369a1;
     }
     
     .map-icon {
@@ -245,25 +249,25 @@
     .map-location-item {
       display: flex;
       align-items: center;
-      background: white;
+      background: linear-gradient(135deg, #ffffff, #f0f9ff);
       padding: 12px;
       border-radius: 8px;
       margin-bottom: 8px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      box-shadow: 0 1px 3px rgba(14, 165, 233, 0.15);
       font-size: 12px;
       transition: all 0.2s;
-      border: 1px solid #e5e7eb;
+      border: 1px solid #e0f2fe;
     }
     
     .map-location-item:active {
-      background: #f3f4f6;
+      background: #e0f2fe;
       transform: scale(0.98);
     }
     
     .map-marker {
       width: 24px;
       height: 24px;
-      background: #3b82f6;
+      background: linear-gradient(135deg, #0ea5e9, #06b6d4);
       color: white;
       border-radius: 50%;
       display: flex;
@@ -276,9 +280,9 @@
     }
     
     .weather-card {
-      background: linear-gradient(135deg, #60a5fa, #3b82f6);
+      background: linear-gradient(135deg, #bae6fd, #7dd3fc, #38bdf8);
       border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(59,130,246,0.3);
+      box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
       padding: 32px;
       color: white;
       text-align: center;
@@ -308,11 +312,12 @@
     }
     
     .info-card {
-      background: white;
+      background: linear-gradient(135deg, #ffffff, #f0f9ff);
       border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      box-shadow: 0 2px 8px rgba(14, 165, 233, 0.15);
       padding: 16px;
       margin-bottom: 16px;
+      border: 1px solid #e0f2fe;
     }
     
     .info-card h3 {
@@ -350,7 +355,7 @@
     }
     
     .forecast-item.current {
-      background: #eff6ff;
+      background: #e0f2fe;
     }
     
     .forecast-day {
@@ -435,12 +440,12 @@
           hotel: "層雲峽 朝陽 RESORT (CHOYO RESORT HOTEL)",
           hotelPhone: "C:81-1658 / T:5-3911 / F:5-3922",
           activities: [
-            { time: "08:00", title: "前往旭山動物園", location: "旭川", duration: "2.5hr" },
+            { time: "08:00", title: "前往旭川", location: "旭川", duration: "2.5hr" },
             { time: "10:30", title: "旭山動物園", location: "旭川市旭山動物園", duration: "3hr" },
             { time: "13:30", title: "旭川拉麵村", location: "旭川拉麵村", duration: "1.5hr" },
-            { time: "15:00", title: "旭川常盤施轉塔", location: "日劇初戀拍攝地點", duration: "1hr" },
-            { time: "16:30", title: "流星、銀河冰瀑", location: "層雲峽", duration: "1hr" },
-            { time: "18:00", title: "層雲峽冰瀑慶典", location: "第51回層雲峽冰瀑慶典", duration: "2hr" }
+            { time: "15:00", title: "旭川常磐ロータリー", location: "旭川常磐ロータリー", duration: "1hr" },
+            { time: "16:30", title: "流星・銀河の滝休憩舎", location: "流星・銀河の滝休憩舎", duration: "1hr" },
+            { time: "18:00", title: "第51回 層雲峽冰瀑慶典", location: "層雲峽溫泉 冰瀑祭特設會場", duration: "2hr" }
           ]
         },
         {
@@ -448,15 +453,15 @@
           date: "2026-02-02",
           dayOfWeek: "一",
           weather: { temp: "-10°C", condition: "雪", icon: "❄️" },
-          hotel: "網走湖莊 HOTEL",
+          hotel: "ホテル網走湖荘",
           hotelPhone: "C:81-152 / T:48-2311 / F:48-2828",
           activities: [
-            { time: "08:00", title: "流冰觀光破冰船", location: "鄂霍次克海", duration: "2hr" },
+            { time: "08:00", title: "鄂霍次克海流冰破冰船體驗", location: "網走流氷観光砕氷船おーろら", duration: "2hr" },
             { time: "10:30", title: "天都山流冰館", location: "天都山", duration: "1.5hr" },
-            { time: "12:00", title: "天都山展望台", location: "跳望網走市區", duration: "1hr" },
-            { time: "14:00", title: "硫磺山", location: "硫磺山溫泉煮蛋", duration: "1.5hr" },
-            { time: "16:00", title: "前往網走", location: "網走湖莊", duration: "1hr" },
-            { time: "18:00", title: "飯店晚餐", location: "網走湖莊 HOTEL", duration: "2hr" }
+            { time: "12:00", title: "天都山展望台", location: "天都山展望台", duration: "1hr" },
+            { time: "14:00", title: "硫磺山(贈溫泉煮蛋)", location: "硫黄山", duration: "1.5hr" },
+            { time: "16:00", title: "前往網走", location: "ホテル網走湖荘", duration: "1hr" },
+            { time: "18:00", title: "飯店晚餐", location: "ホテル網走湖荘", duration: "2hr" }
           ]
         },
         {
@@ -468,10 +473,10 @@
           hotelPhone: "C:81-155 / T:46-2001 / F:46-2333",
           activities: [
             { time: "08:00", title: "釧路濕原國立公園", location: "釧路濕原瞭望台", duration: "2hr" },
-            { time: "10:30", title: "丹頂鶴自然公園", location: "西伯利亞丹頂鶴飛來地", duration: "1.5hr" },
+            { time: "10:30", title: "丹頂鶴自然公園", location: "釧路市丹頂鶴自然公園", duration: "1.5hr" },
             { time: "12:30", title: "午餐", location: "釧路市區", duration: "1hr" },
             { time: "14:00", title: "十勝幸福車站", location: "十勝川溫泉區", duration: "1.5hr" },
-            { time: "16:00", title: "十勝川白鳥祭", location: "彩凜華 SAIRINKA (1/24~2/15)", duration: "2hr" },
+            { time: "16:00", title: "十勝川白鳥祭 彩凛華 SAIRINKA", location: "十勝丘公園", duration: "2hr" },
             { time: "18:30", title: "飯店入住", location: "十勝川觀月苑", duration: "1.5hr" }
           ]
         },
@@ -480,15 +485,15 @@
           date: "2026-02-04",
           dayOfWeek: "三",
           weather: { temp: "-6°C", condition: "晴", icon: "☀️" },
-          hotel: "Hotel JAL City札幌中島公園 (附設大浴場)",
+          hotel: "ホテルJALシティ札幌 中島公園 (附設大浴場)",
           hotelPhone: "C:81-11 / T:521-2580 / F:521-2581",
           activities: [
             { time: "09:00", title: "免稅店", location: "札幌市區", duration: "1hr" },
             { time: "10:30", title: "白色戀人歐風庭院", location: "白色戀人公園", duration: "1.5hr" },
-            { time: "12:30", title: "北海道神宮", location: "北海道總鎮守", duration: "1hr" },
-            { time: "14:00", title: "札幌雪祭", location: "第76回札幌雪祭 (2/4~2/11)", duration: "3hr" },
+            { time: "12:30", title: "北海道神宮", location: "北海道神宮", duration: "1hr" },
+            { time: "14:00", title: "第七十六回 札幌雪祭 2026/2/4 ~ 2026/2/11", location: "札幌大通公園", duration: "3hr" },
             { time: "17:30", title: "自由夜訪狸小路", location: "狸小路商店街", duration: "2.5hr" },
-            { time: "20:00", title: "飯店入住", location: "JAL City中島公園", duration: "-" }
+            { time: "20:00", title: "飯店入住", location: "ホテルJALシティ札幌 中島公園", duration: "-" }
           ]
         },
         {
@@ -499,8 +504,8 @@
           hotel: "溫暖的家",
           hotelPhone: "",
           activities: [
-            { time: "09:00", title: "北方雪上樂園", location: "SNOW PARK 6合一戲雪", duration: "2hr" },
-            { time: "11:30", title: "三井OUTLET", location: "三井OUTLET購物中心", duration: "2.5hr" },
+            { time: "09:00", title: "6合一戲雪樂 (贈飲料)", location: "F VILLAGE Snow Park", duration: "2hr" },
+            { time: "11:30", title: "三井OUTLET PARK 札幌北廣島", location: "三井OUTLET購物中心", duration: "2.5hr" },
             { time: "14:30", title: "前往新千歲機場", location: "新千歲機場", duration: "1hr" },
             { time: "16:00", title: "機場報到", location: "新千歲機場", duration: "2hr" },
             { time: "18:40", title: "搭機返台", location: "酷航 TR893 新千歲→台北", duration: "4hr" },
@@ -512,6 +517,7 @@
 
     let currentDay = 1;
     let activeTab = 'schedule';
+    let currentView = 'day'; // 'info' or 'day'
 
     function init() {
       renderDayNav();
@@ -521,27 +527,142 @@
 
     function renderDayNav() {
       const dayNav = document.getElementById('dayNav');
-      dayNav.innerHTML = tripData.days.map(day => 
-        `<button class="day-btn ${day.day === currentDay ? 'active' : ''}" data-day="${day.day}">Day ${day.day}</button>`
-      ).join('');
+      dayNav.innerHTML = `
+        <button class="day-btn ${currentView === 'info' ? 'active' : ''}" data-view="info">ℹ️ 資訊</button>
+        ${tripData.days.map(day => 
+          `<button class="day-btn ${currentView === 'day' && day.day === currentDay ? 'active' : ''}" data-day="${day.day}">Day ${day.day}</button>`
+        ).join('')}
+      `;
     }
 
     function renderContent() {
       updateHeader();
-      renderSchedule();
-      renderMap();
-      renderWeather();
+      
+      // 控制分頁導航的顯示/隱藏
+      const tabNav = document.querySelector('.tab-nav');
+      const tabContents = document.querySelectorAll('.tab-content');
+      
+      if (currentView === 'info') {
+        // 在資訊頁面時隱藏分頁導航
+        tabNav.style.display = 'none';
+        
+        // 隱藏所有分頁內容
+        tabContents.forEach(content => content.classList.remove('active'));
+        
+        // 在行程區域顯示完整資訊
+        renderInfoPage();
+      } else {
+        // 在日期頁面時顯示分頁導航
+        tabNav.style.display = 'flex';
+        
+        // 恢復分頁內容顯示
+        document.getElementById(activeTab + 'Content').classList.add('active');
+        
+        // 渲染對應內容
+        renderSchedule();
+        renderMap();
+        renderWeather();
+      }
+    }
+    
+    function renderInfoPage() {
+      const content = document.getElementById('scheduleContent');
+      content.classList.add('active');
+      
+      content.innerHTML = `
+        <div class="info-card">
+          <h3>📋 團體資訊</h3>
+          <div class="info-item">
+            <span class="info-icon">🎫</span>
+            <span>團號：${tripData.tourCode}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">👤</span>
+            <span>導遊：${tripData.guide.name}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">📱</span>
+            <span>台灣手機：${tripData.guide.phoneTW}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">📱</span>
+            <span>日本手機：${tripData.guide.phoneJP}</span>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h3>✈️ 去程航班</h3>
+          <div class="info-item">
+            <span class="info-icon">🛫</span>
+            <span>酷航 TR892</span>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">📍</span>
+            <span>台北桃園 (TPE) → 北海道新千歲 (CTS)</span>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">🕐</span>
+            <span>2026-01-31 12:30 ~ 17:20</span>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">⏱️</span>
+            <span>飛行時間：約 4.5 小時</span>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h3>✈️ 回程航班</h3>
+          <div class="info-item">
+            <span class="info-icon">🛬</span>
+            <span>酷航 TR893</span>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">📍</span>
+            <span>北海道新千歲 (CTS) → 台北桃園 (TPE)</span>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">🕐</span>
+            <span>2026-02-05 18:40 ~ 22:20</span>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">⏱️</span>
+            <span>飛行時間：約 4 小時</span>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h3>📅 集合資訊</h3>
+          <div class="info-item">
+            <span class="info-icon">📍</span>
+            <span>桃園機場第一航站 館航1號團體櫃台</span>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">🕐</span>
+            <span>2026-01-31 上午 09:30</span>
+          </div>
+        </div>
+      `;
     }
 
     function updateHeader() {
-      const currentDayData = tripData.days.find(d => d.day === currentDay);
-      const dateStr = `${currentDayData.date} (${currentDayData.dayOfWeek})`;
-      document.getElementById('headerDate').textContent = `${dateStr} · 第 ${currentDay} 天`;
+      if (currentView === 'info') {
+        document.getElementById('headerDate').textContent = '團體資訊';
+      } else {
+        const currentDayData = tripData.days.find(d => d.day === currentDay);
+        const dateStr = `${currentDayData.date} (${currentDayData.dayOfWeek})`;
+        document.getElementById('headerDate').textContent = `${dateStr} · 第 ${currentDay} 天`;
+      }
     }
 
     function renderSchedule() {
-      const currentDayData = tripData.days.find(d => d.day === currentDay);
       const content = document.getElementById('scheduleContent');
+      
+      if (currentView === 'info') {
+        return; // 資訊頁面由 renderInfoPage 處理
+      }
+      
+      // 原本的每日行程顯示
+      const currentDayData = tripData.days.find(d => d.day === currentDay);
       
       content.innerHTML = `
         ${currentDayData.activities.map((activity, idx) => `
@@ -573,8 +694,19 @@
     }
 
     function renderMap() {
-      const currentDayData = tripData.days.find(d => d.day === currentDay);
       const content = document.getElementById('mapContent');
+      
+      if (currentView === 'info') {
+        content.innerHTML = `
+          <div style="text-align: center; padding: 40px 20px; color: #6b7280;">
+            <div style="font-size: 48px; margin-bottom: 16px;">🗺️</div>
+            <p>請選擇具體日期查看地圖</p>
+          </div>
+        `;
+        return;
+      }
+      
+      const currentDayData = tripData.days.find(d => d.day === currentDay);
       
       // 建立 Google Maps 搜尋 URL（包含所有地點）
       const locations = currentDayData.activities.map(activity => activity.location).join(' / ');
@@ -612,39 +744,43 @@
     }
 
     function renderWeather() {
-      const currentDayData = tripData.days.find(d => d.day === currentDay);
       const content = document.getElementById('weatherContent');
+      
+      if (currentView === 'info') {
+        content.innerHTML = `
+          <div style="text-align: center; padding: 40px 20px; color: #6b7280;">
+            <div style="font-size: 48px; margin-bottom: 16px;">🌤️</div>
+            <p>請選擇具體日期查看天氣</p>
+          </div>
+        `;
+        return;
+      }
+      
+      const currentDayData = tripData.days.find(d => d.day === currentDay);
       
       content.innerHTML = `
         <div class="weather-card">
-          <div class="weather-icon">${currentDayData.weather.icon}</div>
-          <div class="weather-temp">${currentDayData.weather.temp}</div>
-          <div class="weather-condition">${currentDayData.weather.condition}</div>
+          <div class="weather-icon">🌤️</div>
+          <div style="font-size: 24px; font-weight: 600; margin-bottom: 8px;">北海道天氣預報</div>
           <div class="weather-date">${currentDayData.date} (${currentDayData.dayOfWeek})</div>
         </div>
 
         <div class="info-card">
-          <h3>📋 團體資訊</h3>
-          <div class="info-item">
-            <span class="info-icon">🎫</span>
-            <span>團號：${tripData.tourCode}</span>
-          </div>
-          <div class="info-item">
-            <span class="info-icon">👤</span>
-            <span>導遊：${tripData.guide.name}</span>
-          </div>
-          <div class="info-item">
-            <span class="info-icon">📱</span>
-            <span>台灣手機：${tripData.guide.phoneTW}</span>
-          </div>
-          <div class="info-item">
-            <span class="info-icon">📱</span>
-            <span>日本手機：${tripData.guide.phoneJP}</span>
-          </div>
+          <h3>📡 即時天氣預報</h3>
+          <p style="font-size: 14px; color: #6b7280; margin-bottom: 12px;">
+            查看日本氣象廳提供的北海道最新天氣預報
+          </p>
+          <a href="https://www.data.jma.go.jp/multi/yoho/hokkaido_nanseibu.html?forecast=weather0&lang=cn_zt" 
+             target="_blank" 
+             class="map-button"
+             style="display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none;">
+            <span>🌐</span>
+            <span>查看日本氣象廳天氣預報</span>
+          </a>
         </div>
 
         <div class="info-card">
-          <h3>天氣提示</h3>
+          <h3>🧥 穿著建議</h3>
           <div class="info-item">
             <span class="info-icon">❄️</span>
             <span>北海道冬季氣溫低，請穿著保暖衣物</span>
@@ -657,17 +793,20 @@
             <span class="info-icon">👟</span>
             <span>穿著防滑鞋，小心路面結冰</span>
           </div>
+          <div class="info-item">
+            <span class="info-icon">🧥</span>
+            <span>建議洋蔥式穿搭，方便室內外調節</span>
+          </div>
         </div>
 
         <div class="info-card">
-          <h3>未來天氣預報</h3>
+          <h3>📅 旅遊期間</h3>
           <div class="forecast-list">
             ${tripData.days.map(day => `
               <div class="forecast-item ${day.day === currentDay ? 'current' : ''}">
                 <span class="forecast-day">Day ${day.day}</span>
-                <span class="forecast-icon">${day.weather.icon}</span>
-                <span class="forecast-temp">${day.weather.temp}</span>
-                <span class="forecast-cond">${day.weather.condition}</span>
+                <span style="font-size: 13px; color: #6b7280; flex: 1;">${day.date}</span>
+                <span style="font-size: 13px; color: #6b7280;">(${day.dayOfWeek})</span>
               </div>
             `).join('')}
           </div>
@@ -679,9 +818,15 @@
       // Day navigation
       document.getElementById('dayNav').addEventListener('click', (e) => {
         if (e.target.classList.contains('day-btn')) {
-          currentDay = parseInt(e.target.dataset.day);
-          document.querySelectorAll('.day-btn').forEach(btn => btn.classList.remove('active'));
-          e.target.classList.add('active');
+          if (e.target.dataset.view === 'info') {
+            // 點擊「資訊」按鈕
+            currentView = 'info';
+          } else if (e.target.dataset.day) {
+            // 點擊 Day 按鈕
+            currentView = 'day';
+            currentDay = parseInt(e.target.dataset.day);
+          }
+          renderDayNav();
           renderContent();
         }
       });
