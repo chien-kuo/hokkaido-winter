@@ -175,7 +175,20 @@
     
     .activity-location {
       font-size: 14px;
-      color: #6b7280;
+      color: #0284c7;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      transition: color 0.2s;
+    }
+    
+    .activity-location:hover {
+      color: #0369a1;
+      text-decoration: underline;
+    }
+    
+    .activity-location:active {
+      color: #075985;
     }
     
     .activity-number {
@@ -396,14 +409,10 @@
 
     <div class="tab-nav">
       <button class="tab-btn active" data-tab="schedule">📅 行程</button>
-      <button class="tab-btn" data-tab="map">🗺️ 地圖</button>
-      <button class="tab-btn" data-tab="weather">🌤️ 天氣</button>
     </div>
 
     <div class="content">
       <div id="scheduleContent" class="tab-content active"></div>
-      <div id="mapContent" class="tab-content"></div>
-      <div id="weatherContent" class="tab-content"></div>
     </div>
   </div>
 
@@ -445,7 +454,8 @@
             { time: "13:30", title: "旭川拉麵村", location: "旭川拉麵村", duration: "1.5hr" },
             { time: "15:00", title: "旭川常磐ロータリー", location: "旭川常磐ロータリー", duration: "1hr" },
             { time: "16:30", title: "流星・銀河の滝休憩舎", location: "流星・銀河の滝休憩舎", duration: "1hr" },
-            { time: "18:00", title: "第51回 層雲峽冰瀑慶典", location: "層雲峽溫泉 冰瀑祭特設會場", duration: "2hr" }
+            { time: "18:00", title: "第51回 層雲峽冰瀑慶典", location: "層雲峽溫泉 冰瀑祭特設會場", duration: "2hr" },
+            { time: "20:00", title: "飯店入住", location: "層雲峽 朝陽 RESORT", duration: "-" }
           ]
         },
         {
@@ -458,9 +468,9 @@
           activities: [
             { time: "08:00", title: "鄂霍次克海流冰破冰船體驗", location: "網走流氷観光砕氷船おーろら", duration: "2hr" },
             { time: "10:30", title: "天都山流冰館", location: "天都山", duration: "1.5hr" },
-            { time: "12:00", title: "眺望網⾛市區、壯闊鄂霍次克海峽", location: "天都山展望台", duration: "1hr" },
+            { time: "12:00", title: "天都山展望台", location: "天都山展望台", duration: "1hr" },
             { time: "14:00", title: "硫磺山(贈溫泉煮蛋)", location: "硫黄山", duration: "1.5hr" },
-            { time: "16:00", title: "前往網⾛湖莊HOTEL", location: "ホテル網走湖荘", duration: "1hr" },
+            { time: "16:00", title: "前往網走", location: "ホテル網走湖荘", duration: "1hr" },
             { time: "18:00", title: "飯店晚餐", location: "ホテル網走湖荘", duration: "2hr" }
           ]
         },
@@ -473,7 +483,7 @@
           hotelPhone: "C:81-155 / T:46-2001 / F:46-2333",
           activities: [
             { time: "08:00", title: "釧路濕原國立公園", location: "釧路濕原瞭望台", duration: "2hr" },
-            { time: "10:30", title: "丹頂鶴自然公園(西伯利亞丹頂鶴飛來地)", location: "釧路市丹頂鶴自然公園", duration: "1.5hr" },
+            { time: "10:30", title: "丹頂鶴自然公園", location: "釧路市丹頂鶴自然公園", duration: "1.5hr" },
             { time: "12:30", title: "午餐", location: "釧路市區", duration: "1hr" },
             { time: "14:00", title: "十勝幸福車站", location: "十勝川溫泉區", duration: "1.5hr" },
             { time: "16:00", title: "十勝川白鳥祭 彩凛華 SAIRINKA", location: "十勝丘公園", duration: "2hr" },
@@ -490,7 +500,7 @@
           activities: [
             { time: "09:00", title: "免稅店", location: "札幌市區", duration: "1hr" },
             { time: "10:30", title: "白色戀人歐風庭院", location: "白色戀人公園", duration: "1.5hr" },
-            { time: "12:30", title: "北海道總鎮守", location: "北海道神宮", duration: "1hr" },
+            { time: "12:30", title: "北海道神宮", location: "北海道神宮", duration: "1hr" },
             { time: "14:00", title: "第七十六回 札幌雪祭 2026/2/4 ~ 2026/2/11", location: "札幌大通公園", duration: "3hr" },
             { time: "17:30", title: "自由夜訪狸小路", location: "狸小路商店街", duration: "2.5hr" },
             { time: "20:00", title: "飯店入住", location: "ホテルJALシティ札幌 中島公園", duration: "-" }
@@ -560,8 +570,6 @@
         
         // 渲染對應內容
         renderSchedule();
-        renderMap();
-        renderWeather();
       }
     }
     
@@ -634,12 +642,40 @@
           <h3>📅 集合資訊</h3>
           <div class="info-item">
             <span class="info-icon">📍</span>
-            <span>桃園機場第一航站 館航1號團體櫃台</span>
+            <span>桃園機場第一航站 酷航1號團體櫃台</span>
           </div>
           <div class="info-item">
             <span class="info-icon">🕐</span>
             <span>2026-01-31 上午 09:30</span>
           </div>
+        </div>
+
+        <div class="info-card">
+          <h3>🌤️ 即時天氣預報</h3>
+          <p style="font-size: 14px; color: #6b7280; margin-bottom: 12px;">
+            查看日本氣象廳提供的北海道最新天氣預報
+          </p>
+          <a href="https://www.data.jma.go.jp/multi/yoho/hokkaido_nanseibu.html?forecast=weather0&lang=cn_zt" 
+             target="_blank" 
+             class="map-button"
+             style="display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none;">
+            <span>🌐</span>
+            <span>查看日本氣象廳天氣預報</span>
+          </a>
+        </div>
+
+        <div class="info-card">
+          <h3>🚆 JR北海道運行狀態</h3>
+          <p style="font-size: 14px; color: #6b7280; margin-bottom: 12px;">
+            查看JR北海道即時列車運行狀況
+          </p>
+          <a href="https://www3.jrhokkaido.co.jp/webunkou/area_doo_tc.html" 
+             target="_blank" 
+             class="map-button"
+             style="display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none;">
+            <span>🌐</span>
+            <span>查看JR北海道運行狀態</span>
+          </a>
         </div>
       `;
     }
@@ -665,21 +701,26 @@
       const currentDayData = tripData.days.find(d => d.day === currentDay);
       
       content.innerHTML = `
-        ${currentDayData.activities.map((activity, idx) => `
-          <div class="activity-card">
-            <div class="activity-header">
-              <div class="activity-info">
-                <div class="activity-meta">
-                  <span class="time-badge">${activity.time}</span>
-                  <span class="duration">⏱️ ${activity.duration}</span>
+        ${currentDayData.activities.map((activity, idx) => {
+          const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(activity.location)}`;
+          return `
+            <div class="activity-card">
+              <div class="activity-header">
+                <div class="activity-info">
+                  <div class="activity-meta">
+                    <span class="time-badge">${activity.time}</span>
+                    <span class="duration">⏱️ ${activity.duration}</span>
+                  </div>
+                  <h3 class="activity-title">${activity.title}</h3>
+                  <a href="${mapUrl}" target="_blank" class="activity-location">
+                    📍 ${activity.location}
+                  </a>
                 </div>
-                <h3 class="activity-title">${activity.title}</h3>
-                <p class="activity-location">📍 ${activity.location}</p>
+                <div class="activity-number">${idx + 1}</div>
               </div>
-              <div class="activity-number">${idx + 1}</div>
             </div>
-          </div>
-        `).join('')}
+          `;
+        }).join('')}
         
         ${currentDayData.hotel ? `
           <div class="info-card" style="margin-top: 20px;">
@@ -690,127 +731,6 @@
             </div>
           </div>
         ` : ''}
-      `;
-    }
-
-    function renderMap() {
-      const content = document.getElementById('mapContent');
-      
-      if (currentView === 'info') {
-        content.innerHTML = `
-          <div style="text-align: center; padding: 40px 20px; color: #6b7280;">
-            <div style="font-size: 48px; margin-bottom: 16px;">🗺️</div>
-            <p>請選擇具體日期查看地圖</p>
-          </div>
-        `;
-        return;
-      }
-      
-      const currentDayData = tripData.days.find(d => d.day === currentDay);
-      
-      // 建立 Google Maps 搜尋 URL（包含所有地點）
-      const locations = currentDayData.activities.map(activity => activity.location).join(' / ');
-      const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(locations)}`;
-      
-      content.innerHTML = `
-        <div class="map-placeholder">
-          <div style="padding: 16px;">
-            <div class="map-info">
-              ℹ️ 點擊下方地點可在 Google Maps 查看位置
-            </div>
-            
-            <a href="${mapUrl}" target="_blank" class="map-button">
-              🗺️ 在 Google Maps 查看今日所有地點
-            </a>
-            
-            <div class="map-locations">
-              ${currentDayData.activities.map((activity, idx) => {
-                const singleMapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(activity.location)}`;
-                return `
-                  <a href="${singleMapUrl}" target="_blank" class="map-location-item" style="text-decoration: none; color: inherit;">
-                    <div class="map-marker">${idx + 1}</div>
-                    <div style="flex: 1;">
-                      <div style="font-size: 14px; color: #1f2937;">${activity.location}</div>
-                      <div style="font-size: 12px; color: #6b7280; margin-top: 2px;">${activity.time} · ${activity.title}</div>
-                    </div>
-                    <div style="color: #3b82f6; font-size: 18px;">›</div>
-                  </a>
-                `;
-              }).join('')}
-            </div>
-          </div>
-        </div>
-      `;
-    }
-
-    function renderWeather() {
-      const content = document.getElementById('weatherContent');
-      
-      if (currentView === 'info') {
-        content.innerHTML = `
-          <div style="text-align: center; padding: 40px 20px; color: #6b7280;">
-            <div style="font-size: 48px; margin-bottom: 16px;">🌤️</div>
-            <p>請選擇具體日期查看天氣</p>
-          </div>
-        `;
-        return;
-      }
-      
-      const currentDayData = tripData.days.find(d => d.day === currentDay);
-      
-      content.innerHTML = `
-        <div class="weather-card">
-          <div class="weather-icon">🌤️</div>
-          <div style="font-size: 24px; font-weight: 600; margin-bottom: 8px;">北海道天氣預報</div>
-          <div class="weather-date">${currentDayData.date} (${currentDayData.dayOfWeek})</div>
-        </div>
-
-        <div class="info-card">
-          <h3>📡 即時天氣預報</h3>
-          <p style="font-size: 14px; color: #6b7280; margin-bottom: 12px;">
-            查看日本氣象廳提供的北海道最新天氣預報
-          </p>
-          <a href="https://www.data.jma.go.jp/multi/yoho/hokkaido_nanseibu.html?forecast=weather0&lang=cn_zt" 
-             target="_blank" 
-             class="map-button"
-             style="display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none;">
-            <span>🌐</span>
-            <span>查看日本氣象廳天氣預報</span>
-          </a>
-        </div>
-
-        <div class="info-card">
-          <h3>🧥 穿著建議</h3>
-          <div class="info-item">
-            <span class="info-icon">❄️</span>
-            <span>北海道冬季氣溫低，請穿著保暖衣物</span>
-          </div>
-          <div class="info-item">
-            <span class="info-icon">🧤</span>
-            <span>建議攜帶手套、圍巾、毛帽</span>
-          </div>
-          <div class="info-item">
-            <span class="info-icon">👟</span>
-            <span>穿著防滑鞋，小心路面結冰</span>
-          </div>
-          <div class="info-item">
-            <span class="info-icon">🧥</span>
-            <span>建議洋蔥式穿搭，方便室內外調節</span>
-          </div>
-        </div>
-
-        <div class="info-card">
-          <h3>📅 旅遊期間</h3>
-          <div class="forecast-list">
-            ${tripData.days.map(day => `
-              <div class="forecast-item ${day.day === currentDay ? 'current' : ''}">
-                <span class="forecast-day">Day ${day.day}</span>
-                <span style="font-size: 13px; color: #6b7280; flex: 1;">${day.date}</span>
-                <span style="font-size: 13px; color: #6b7280;">(${day.dayOfWeek})</span>
-              </div>
-            `).join('')}
-          </div>
-        </div>
       `;
     }
 
