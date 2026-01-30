@@ -433,6 +433,11 @@
           weather: { temp: "-5°C", condition: "多雲", icon: "☁️" },
           hotel: "定山溪萬世閣 (Jozankei Manseikaku Hotel Milione)",
           hotelPhone: "C:81-11 / T:598-3500 / F:595-2131",
+          meals: {
+            breakfast: "溫暖的家",
+            lunch: "機上精緻簡餐",
+            dinner: "飯店內用自助餐"
+          },
           activities: [
             { time: "09:30", title: "桃園機場集合", location: "桃園機場第一航站 酷航1號團體櫃台", duration: "30min" },
             { time: "12:30", title: "搭機前往北海道", location: "酷航 TR892 台北→新千歲", duration: "4.5hr" },
@@ -448,6 +453,11 @@
           weather: { temp: "-8°C", condition: "雪", icon: "❄️" },
           hotel: "層雲峽 朝陽 RESORT (CHOYO RESORT HOTEL)",
           hotelPhone: "C:81-1658 / T:5-3911 / F:5-3922",
+          meals: {
+            breakfast: "飯店內用",
+            lunch: "拉麵村自選餐 ￥2000",
+            dinner: "飯店內用自助餐"
+          },
           activities: [
             { time: "08:00", title: "前往旭川", location: "旭川", duration: "2.5hr" },
             { time: "10:30", title: "旭山動物園", location: "旭川市旭山動物園", duration: "3hr" },
@@ -465,6 +475,11 @@
           weather: { temp: "-10°C", condition: "雪", icon: "❄️" },
           hotel: "ホテル網走湖荘",
           hotelPhone: "C:81-152 / T:48-2311 / F:48-2828",
+          meals: {
+            breakfast: "飯店內用",
+            lunch: "網走日式風味餐 ￥3000",
+            dinner: "飯店內用會席料理"
+          },
           activities: [
             { time: "08:00", title: "鄂霍次克海流冰破冰船體驗", location: "網走流氷観光砕氷船おーろら", duration: "2hr" },
             { time: "10:30", title: "天都山流冰館", location: "天都山", duration: "1.5hr" },
@@ -481,6 +496,11 @@
           weather: { temp: "-7°C", condition: "晴", icon: "☀️" },
           hotel: "十勝川觀月苑",
           hotelPhone: "C:81-155 / T:46-2001 / F:46-2333",
+          meals: {
+            breakfast: "飯店內用",
+            lunch: "釧路日式風味餐 ￥3000",
+            dinner: "飯店內用自助餐"
+          },
           activities: [
             { time: "08:00", title: "釧路濕原國立公園", location: "釧路濕原瞭望台", duration: "2hr" },
             { time: "10:30", title: "丹頂鶴自然公園", location: "釧路市丹頂鶴自然公園", duration: "1.5hr" },
@@ -497,6 +517,11 @@
           weather: { temp: "-6°C", condition: "晴", icon: "☀️" },
           hotel: "ホテルJALシティ札幌 中島公園 (附設大浴場)",
           hotelPhone: "C:81-11 / T:521-2580 / F:521-2581",
+          meals: {
+            breakfast: "飯店內用",
+            lunch: "北國百匯風味自助餐 ￥2200",
+            dinner: "三大螃蟹+燒肉吃到飽+啤酒、軟性飲料暢飲 ￥7000"
+          },
           activities: [
             { time: "09:00", title: "免稅店", location: "札幌市區", duration: "1hr" },
             { time: "10:30", title: "白色戀人歐風庭院", location: "白色戀人公園", duration: "1.5hr" },
@@ -513,6 +538,11 @@
           weather: { temp: "-4°C", condition: "多雲", icon: "☁️" },
           hotel: "溫暖的家",
           hotelPhone: "",
+          meals: {
+            breakfast: "飯店內用",
+            lunch: "方便逛街 敬請自理",
+            dinner: "機上精緻套餐"
+          },
           activities: [
             { time: "09:00", title: "6合一戲雪樂 (贈飲料)", location: "F VILLAGE Snow Park", duration: "2hr" },
             { time: "11:30", title: "三井OUTLET PARK 札幌北廣島", location: "三井OUTLET購物中心", duration: "2.5hr" },
@@ -701,6 +731,24 @@
       const currentDayData = tripData.days.find(d => d.day === currentDay);
       
       content.innerHTML = `
+        ${currentDayData.meals ? `
+          <div class="info-card" style="margin-bottom: 16px;">
+            <h3>🍽️ 今日餐食</h3>
+            <div class="info-item">
+              <span class="info-icon">🌅</span>
+              <span>早餐：${currentDayData.meals.breakfast}</span>
+            </div>
+            <div class="info-item">
+              <span class="info-icon">☀️</span>
+              <span>午餐：${currentDayData.meals.lunch}</span>
+            </div>
+            <div class="info-item">
+              <span class="info-icon">🌙</span>
+              <span>晚餐：${currentDayData.meals.dinner}</span>
+            </div>
+          </div>
+        ` : ''}
+        
         ${currentDayData.activities.map((activity, idx) => {
           const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(activity.location)}`;
           return `
